@@ -19,6 +19,13 @@
       integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
       crossorigin="anonymous"
     />
+    <!-- GG Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
     <!-- Google Analytics cause I'm nosey like that -->
     <script
       async
@@ -49,6 +56,10 @@
       .link-href {
         @apply text-sm underline;
       }
+
+      body {
+        background-color: #fffdf9;
+      }
     </style>
 
     <script>
@@ -67,14 +78,19 @@
       class="flex flex-col items-center justify-center h-screen w-full gap-6 px-10 md:px-0"
     >
       <section class="section-container">
-        <h1 class="text-3xl">Nonthapat Kaewamporn</h1>
+        <h1
+          class="text-4xl md:text-6xl tracking-tighter italic"
+          style="font-family: 'Instrument Serif', serif"
+        >
+          Nonthapat Kaewamporn
+        </h1>
         <p class="text-sm text-gray-500">Software Engineer @ Agoda</p>
       </section>
-      <section class="section-container leading-none">
+      <section class="section-container leading-none font-light">
         Shipped first production code in 2021. I try to focus on getting things
         done and build stuff that people use.
       </section>
-      <section class="section-container">
+      <section class="section-container font-light">
         <div class="flex items-center gap-2">
           <i class="fab fa-github"></i>
           <a href="https://github.com/nkaewam" target="_blank" class="link-href"
