@@ -1,0 +1,42 @@
+---
+import { CaretDownIcon } from '@phosphor-icons/react'
+
+type Heading = {
+  depth: number
+  slug: string
+  text: string
+}
+
+type Props = {
+  headings: Heading[]
+}
+
+const { headings } = Astro.props
+const h2Headings = headings.filter((heading) => heading.depth === 2)
+---
+
+{
+  h2Headings.length > 0 && (
+    <details class="toc group border border-border px-4 py-3 bg-muted">
+      <summary class="toc-summary text-muted-foreground flex cursor-pointer list-none items-center justify-between gap-4 text-sm select-none [&::-webkit-details-marker]:hidden">
+        <span>Table of Contents</span>
+        <CaretDownIcon className="size-4 shrink-0 group-open:rotate-180" />
+      </summary>
+
+      <nav class="mt-1" aria-label="Table of contents">
+        <ul class="flex flex-col">
+          {h2Headings.map((heading) => (
+            <li>
+              <a
+                href={`#${heading.slug}`}
+                class="text-sm text-foreground no-underline hover:underline"
+              >
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </details>
+  )
+}

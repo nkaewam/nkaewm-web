@@ -16,6 +16,7 @@
     "typecheck": "astro check"
   },
   "dependencies": {
+    "@astrojs/mdx": "^6.0.2",
     "@astrojs/react": "^5",
     "@base-ui/react": "^1.5.0",
     "@phosphor-icons/react": "^2.1.10",

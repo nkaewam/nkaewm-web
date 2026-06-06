@@ -1,24 +1,12 @@
 ---
 import Layout from "@/layouts/main.astro"
 import Image from "astro/components/Image.astro"
+import { getCollection } from "astro:content"
+import BlogSummary from "@/components/blocks/blog/blog-summary"
 
-const contacts = [
-  {
-    label: "nkaewam@google.com",
-    href: "mailto:nkaewam@google.com",
-    icon: "envelope",
-  },
-  {
-    label: "github.com/nkaewam",
-    href: "https://github.com/nkaewam",
-    icon: "github",
-  },
-  {
-    label: "linkedin.com/in/nkaewam",
-    href: "https://linkedin.com/in/nkaewam",
-    icon: "linkedin",
-  },
-]
+const blogPosts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+)
 ---
 
 <Layout>
@@ -32,7 +20,7 @@ const contacts = [
         </h1>
 
         <p class="text-lg">
-          Senior Software Engineer @ Agoda
+          Customer Engineering @ Google
         </p>
 
         <nav class="mt-1 flex font-mono text-sm gap-4 font-light">
@@ -42,7 +30,25 @@ const contacts = [
         </nav>
       </header>
 
-     
+      <section class="w-full">
+        <h2 class="text-xl mb-4">Blogs</h2>
+        {
+          blogPosts.length > 0 && (
+            <ul class="flex flex-col gap-3">
+              {blogPosts.map((post) => (
+                <li>
+                  <BlogSummary
+                    title={post.data.title}
+                    subtitle={post.data.subtitle}
+                    alias={post.id}
+                    date={post.data.date}
+                  />
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </section>
     </div>
   </main>
 </Layout>

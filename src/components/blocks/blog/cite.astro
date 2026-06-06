@@ -1,0 +1,11 @@
+---
+interface Props {
+  n: number
+}
+
+const { n } = Astro.props
+---
+
+<a href={`#ref-${n}`} class="cite">
+  <slot /><sup class="cite-marker">{n}</sup>
+</a>

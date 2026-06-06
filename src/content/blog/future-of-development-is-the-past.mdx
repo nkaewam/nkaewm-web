@@ -1,0 +1,62 @@
+---
+title: "The Future of Development is the Past"
+subtitle: "How LLMs flipped a decade of convention, and why the next chapter runs on your machine"
+date: 2026-06-06
+---
+import Cite from "@/components/blocks/blog/cite.astro"
+
+Since 2023, LLMs have changed software engineering more than any tool in the last decade. Conventions that took ten years to settle were upended in half that time. SWE was always going to feel this first. We work in language, logic, and systems. LLMs speak our language.
+
+
+> The change is real. But routing every keystroke through a cloud API is not the only way forward.
+
+## The cloud inference trap
+
+Online inference feels frictionless. Open an editor, ask a question, and a model in a data center writes the code. No GPU, no setup.
+
+The economics disagree for daily, hands-on work. Every token has a cost. Providers have subsidized usage for years, but enterprises at scale already see the bill: an AI line item that can match another engineer's salary. Paying per token forever is not sustainable for something as fundamental as autocomplete. Cloud LLMs still have a place. Just not for everything.
+
+## We already went through this cycle
+
+Remember when IntelliJ ate your RAM? Local dev meant a beefy workstation. Your machine did the heavy lifting: indexing, compiling, running the IDE. You bought hardware to match.
+
+Today that pressure is mostly gone. Build tools are faster. IDEs are lighter. You can run Cursor on a 4 GB laptop because the model runs in the cloud. The workstation got thinner. The intelligence moved elsewhere. That trade worked as a transition. It does not work as a destination.
+
+## The pendulum swings back
+
+Companies already own expensive machines. Developers already have capable hardware on their desks. So why keep paying for cloud inference to do work your own machine could eventually do for free? Small language models are how that shift happens.
+
+SLMs are already viable in specific domains. Useful autocomplete once required GPT-3.5 on GPU clusters. Now models like <Cite n={1}>Zeta 2.1</Cite> (built on top of <Cite n={2}>Qwen2.5-Coder-7B</Cite>) deliver real coding assistance on consumer hardware. <Cite n={3}>A recent study</Cite> compared five SLMs against three frontier LLMs on requirements classification. LLMs led by roughly 2% on average F1, but the difference was not statistically significant. The SLMs were up to 300 times smaller. Structured, domain-specific work is already within reach.
+
+## Two to three years out
+
+Full agentic workflows are not there yet. As of time of writing (June 2026), multi-file refactors and open-ended reasoning across large codebases still belong to larger models. But the gap is closing fast.
+
+SLMs get smarter and faster every release. Processors improve every year: Apple Silicon, GPUs, better quantization. Within two to three years, local models should handle most daily dev work: completion, inline edits, refactors, tests, docs. When that happens, hands-on AI stops being a budget line item and becomes infrastructure, like your compiler or linter. Always on, always private, always yours.
+
+## Cloud agents are the other half
+
+We are still figuring out how to use agents at scale. Spin up an agent to run in the background, hand off a task, or let a long-running agent work across a codebase like another engineer on the team. That works, and it belongs in the cloud. Local models are not built for autonomous, long-lived work that needs persistent state and broad context.
+
+The distinction matters. Agents should work alongside us as co-bots, not replace our hands on the keyboard. You stay in the flow of writing and deciding. The agent handles the background: triaging issues, drafting PRs, running migrations, chasing down test failures. Local for what you touch directly. Cloud for what runs on its own.
+
+## Beyond coding
+
+Co-work follows the same split. Summarizing notes, drafting specs, triaging email: local SLMs can handle the interactive, repetitive parts. Long-running research or cross-team coordination agents stay in the cloud.
+
+Any knowledge work with language, structure, and repetition is a candidate. The same SLM that completes your function might summarize your meeting notes or draft a spec from bullet points. Intelligence does not need to be rented for all of it.
+
+## The future looks like the past
+
+The future of development is local for the work in your hands. Cloud for the agents working beside you.
+
+We spent a decade buying bigger machines for heavier local tools. We spent the last few years shedding that weight and renting intelligence instead. The next chapter combines both: local hardware running local models for daily dev, cloud agents handling the autonomous work that needs frontier-scale reasoning. Technologies progress in circles. The workstation comes back, not to run IntelliJ, but to run the intelligence (_Or should we say IntelliJence?_ lol sorry) that replaced it.
+
+<section class="references">
+  <p class="references-title">References</p>
+  <ol>
+    <li id="ref-1">Zed Industries. <a href="https://huggingface.co/zed-industries/zeta-2.1">"Zeta 2.1: Open-weight edit prediction model."</a> Hugging Face, 2025.</li>
+    <li id="ref-2">Alibaba Cloud. <a href="https://huggingface.co/Qwen/Qwen2.5-Coder-7B">"Qwen2.5-Coder-7B."</a> Hugging Face, 2024.</li>
+    <li id="ref-3">Zadenoori, M. A., et al. <a href="https://arxiv.org/html/2510.21443v1">"Does Model Size Matter? A Comparison of Small and Large Language Models for Requirements Classification."</a> arXiv:2510.21443, 2025.</li>
+  </ol>
+</section>

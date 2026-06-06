@@ -1,5 +1,15 @@
 ---
 import "@/styles/global.css"
+
+type Props = {
+  title?: string
+  description?: string
+}
+
+const {
+  title = "Nonthapat Kaewamporn",
+  description = "Nonthapat Kaewamporn — Customer Engineering @ Google",
+} = Astro.props
 ---
 
 <html lang="en" data-theme="light">
@@ -7,8 +17,8 @@ import "@/styles/global.css"
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content="Nonthapat Kaewamporn — Customer Engineer at Google Cloud (Thailand)." />
-    <title>Nonthapat Kaewamporn</title>
+    <meta name="description" content={description} />
+    <title>{title}</title>
   </head>
   <body>
     <slot />
