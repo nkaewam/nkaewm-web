@@ -1,17 +1,48 @@
 ---
 import Layout from "@/layouts/main.astro"
-import { Button } from "@/components/ui/button"
+import Image from "astro/components/Image.astro"
+
+const contacts = [
+  {
+    label: "nkaewam@google.com",
+    href: "mailto:nkaewam@google.com",
+    icon: "envelope",
+  },
+  {
+    label: "github.com/nkaewam",
+    href: "https://github.com/nkaewam",
+    icon: "github",
+  },
+  {
+    label: "linkedin.com/in/nkaewam",
+    href: "https://linkedin.com/in/nkaewam",
+    icon: "linkedin",
+  },
+]
 ---
 
 <Layout>
-  <div class="flex min-h-svh p-6">
-    <div class="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-      <div>
-        <h1 class="font-medium">Project ready!</h1>
-        <p>You may now add components and start building.</p>
-        <p>We've already added the button component for you.</p>
-        <Button client:load className="mt-2">Button</Button>
-      </div>
+  <main class="flex min-h-svh flex-col items-center px-6 py-16 sm:py-24">
+    <div class="flex w-full max-w-2xl flex-col items-center gap-20 text-sm leading-relaxed">
+      <header class="flex flex-col items-center text-center">
+        <Image src="/nkaewam.png" alt="Nonthapat Kaewamporn" width={75} height={75} />
+
+        <h1 class="text-4xl mt-6">
+          Nonthapat Kaewamporn
+        </h1>
+
+        <p class="text-lg">
+          Senior Software Engineer @ Agoda
+        </p>
+
+        <nav class="mt-1 flex font-mono text-sm gap-4 font-light">
+          <a href="mailto:nonthapatkeawamporn@gmail.com" target="_blank" rel="noopener noreferrer">email</a>
+          <a href="https://github.com/nkaewam" target="_blank" rel="noopener noreferrer">github</a>
+          <a href="https://linkedin.com/in/nkaewam" target="_blank" rel="noopener noreferrer">linkedin</a>
+        </nav>
+      </header>
+
+     
     </div>
-  </div>
+  </main>
 </Layout>
