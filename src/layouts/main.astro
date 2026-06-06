@@ -4,11 +4,17 @@ import "@/styles/global.css"
 type Props = {
   title?: string
   description?: string
+  image?: string
+  url?: string
+  type?: "website" | "article"
 }
 
 const {
   title = "Nonthapat Kaewamporn",
   description = "Nonthapat Kaewamporn — Customer Engineering @ Google",
+  image,
+  url,
+  type = "website",
 } = Astro.props
 ---
 
@@ -19,6 +25,17 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    {url && <meta property="og:url" content={url} />}
+    {image && (
+      <>
+        <meta property="og:image" content={image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={image} />
+      </>
+    )}
   </head>
   <body>
     <slot />
