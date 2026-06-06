@@ -48,8 +48,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href
   title={title}
   description={subtitle}
   image={ogImage}
+  imageAlt={title}
+  imageWidth={1200}
+  imageHeight={630}
   url={canonicalUrl}
   type="article"
+  publishedTime={date.toISOString()}
 >
   <main class="flex min-h-svh flex-col items-center px-6 py-16 sm:py-24">
     <article class="flex w-full max-w-2xl flex-col gap-4 text-sm leading-relaxed">
