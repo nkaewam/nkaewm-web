@@ -1,0 +1,331 @@
+---
+import Layout from "@/layouts/main.astro"
+import { ArrowLeftIcon } from "@phosphor-icons/react"
+import TableOfContents from "@/components/blocks/blog/table-of-contents.astro"
+
+type Heading = {
+  depth: number
+  slug: string
+  text: string
+}
+
+type Props = {
+  title: string
+  subtitle: string
+  date: Date
+  headings: Heading[]
+}
+
+const { title, subtitle, date, headings } = Astro.props
+
+const formattedDate = date.toLocaleDateString("en-US", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+})
+---
+
+<Layout title={`${title} — Nonthapat Kaewamporn`}>
+  <main class="flex min-h-svh flex-col items-center px-6 py-16 sm:py-24">
+    <article class="flex w-full max-w-2xl flex-col gap-4 text-sm leading-relaxed">
+      <header class="flex flex-col gap-1 border-b border-border pb-5">
+        <a href="/" class="relative font-mono flex gap-2 items-center text-sm text-muted-foreground no-underline hover:underline">
+          <ArrowLeftIcon /> <span class="relative top-px">back</span>
+        </a>
+
+        <div class="flex items-start justify-between gap-4">
+          <h1 class="text-3xl">{title}</h1>
+          <time datetime={date.toISOString()} class="shrink-0 text-sm text-muted-foreground">
+            {formattedDate}
+          </time>
+        </div>
+
+        <p class="text-muted-foreground italic">{subtitle}</p>
+      </header>
+
+      <TableOfContents headings={headings} />
+
+      <div class="blog-content mt-3">
+        <slot />
+      </div>
+
+      <footer class="blog-footnote">
+        <p>
+          <sup>*</sup> This blog is written by human but proofed and rearranged by AI – as it should be.
+        </p>
+      </footer>
+    </article>
+  </main>
+
+  <script is:inline>
+    document.querySelectorAll(".blog-content h2[id]").forEach((heading) => {
+      if (heading.querySelector(".heading-anchor")) return
+
+      const label = heading.textContent?.trim() ?? heading.id
+      const anchor = document.createElement("a")
+      anchor.className = "heading-anchor"
+      anchor.href = `#${heading.id}`
+      anchor.setAttribute("aria-label", `Link to ${label}`)
+      anchor.textContent = "#"
+      heading.prepend(anchor)
+    })
+  </script>
+</Layout>
+
+<style is:global>
+  .blog-content h2 {
+    position: relative;
+    margin-top: 1.75rem;
+    font-size: 1.25rem;
+    scroll-margin-top: 2rem;
+  }
+
+  .blog-content h2 .heading-anchor {
+    position: absolute;
+    right: calc(100% + 0.35rem);
+    top: 0;
+    opacity: 0;
+    color: var(--color-muted-foreground);
+    text-decoration: none;
+    font-size: 0.875em;
+    font-weight: 400;
+    user-select: none;
+  }
+
+  .blog-content h2 .heading-anchor::before {
+    content: "";
+    position: absolute;
+    top: -0.375rem;
+    bottom: -0.375rem;
+    left: -0.375rem;
+    right: -0.625rem;
+  }
+
+  .blog-content h2:hover .heading-anchor,
+  .blog-content h2 .heading-anchor:hover,
+  .blog-content h2 .heading-anchor:focus-visible {
+    opacity: 1;
+  }
+
+  .blog-content h2 .heading-anchor,
+  .blog-content h2 .heading-anchor:hover {
+    text-decoration: none;
+  }
+
+  .blog-content em {
+    font-style: italic;
+  }
+
+  .blog-content strong {
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--color-foreground) 20%, transparent);
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+  }
+
+  .blog-content blockquote {
+    margin-top: 1rem;
+    padding: 0.25rem 0 0.25rem 0.875rem;
+    border-left: 2px solid color-mix(in oklab, var(--color-foreground) 12%, var(--color-border));
+    font-style: italic;
+  }
+
+  .blog-content > * + * {
+    margin-top: 1rem;
+  }
+
+  .blog-content > p:first-of-type {
+    initial-letter: 2;
+    initial-letter-align: alphabetic;
+  }
+
+  @supports not (initial-letter: 2) {
+    .blog-content > p:first-of-type::first-letter {
+      float: left;
+      font-size: 3.25em;
+      line-height: 1;
+      margin-right: 0.075em;
+      font-weight: inherit;
+      font-family: var(--font-serif);
+    }
+  }
+
+  .blog-content h3 {
+    margin-top: 0.5rem;
+    font-size: 1.125rem;
+  }
+
+  .blog-content ul,
+  .blog-content ol {
+    padding-left: 1.25rem;
+  }
+
+  .blog-content ul {
+    list-style: disc;
+  }
+
+  .blog-content ol {
+    list-style: decimal;
+  }
+
+  .blog-content pre {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+
+  .blog-content code {
+    font-family: var(--font-mono);
+    font-size: 1em;
+  }
+
+  .blog-content table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .blog-content th,
+  .blog-content td {
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  .blog-content a {
+    color: var(--color-foreground);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--color-foreground) 35%, transparent);
+    text-underline-offset: 0.15em;
+    transition: text-decoration-color 0.15s ease;
+  }
+
+  .blog-content a:hover {
+    text-decoration-color: var(--color-foreground);
+  }
+
+  .blog-content sup a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .blog-content sup a:hover {
+    text-decoration: underline;
+  }
+
+  .blog-content a.cite {
+    display: inline;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--color-foreground) 55%, transparent);
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 1px;
+    font-weight: 500;
+  }
+
+  .blog-content a.cite:hover {
+    text-decoration-color: var(--color-foreground);
+  }
+
+  .blog-content a.cite .cite-marker {
+    font-size: 0.65em;
+    font-weight: 600;
+    margin-left: 0.05em;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .blog-content .references {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.8125rem;
+    color: var(--color-muted-foreground);
+  }
+
+  .blog-content .references-title {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+
+  .blog-content .references ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .blog-content .references li {
+    scroll-margin-top: 2rem;
+  }
+
+  .blog-content .references a {
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+
+  .blog-content .footnotes {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.8125rem;
+    color: var(--color-muted-foreground);
+  }
+
+  .blog-content .footnotes::before {
+    content: "References";
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+
+  .blog-content .footnotes hr {
+    display: none;
+  }
+
+  .blog-content .footnotes ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .blog-content .footnotes li p {
+    margin: 0;
+  }
+
+  .blog-content .footnotes a {
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+
+  .blog-content .footnotes a[data-footnote-backref] {
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+    text-decoration: none;
+  }
+
+  .blog-footnote {
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.8125rem;
+    color: var(--color-muted-foreground);
+  }
+
+  .blog-footnote p {
+    margin: 0;
+  }
+
+  .blog-footnote sup {
+    margin-right: 0.25rem;
+    font-weight: 600;
+  }
+</style>
