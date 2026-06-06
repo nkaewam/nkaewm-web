@@ -94,15 +94,23 @@
   * {
     @apply border-border outline-ring/50;
     }
+  html {
+    overflow-x: clip;
+    @apply font-serif;
+    color-scheme: light;
+    }
   body {
     @apply bg-background text-foreground;
+    overflow-wrap: break-word;
+    }
+  img,
+  video,
+  svg {
+    max-width: 100%;
+    height: auto;
     }
   button:not(:disabled), [role="button"]:not(:disabled) {
     cursor: pointer;
-    }
-  html {
-    @apply font-serif;
-    color-scheme: light;
     }
   a {
     @apply underline-offset-2 hover:underline;

@@ -24,9 +24,11 @@ Today that pressure is mostly gone. Build tools are faster. IDEs are lighter. Yo
 
 ## The pendulum swings back
 
-Companies already own expensive machines. Developers already have capable hardware on their desks. So why keep paying for cloud inference to do work your own machine could eventually do for free? Small language models are how that shift happens.
+Companies already own expensive machines. Developers already have capable hardware on their desks. So why keep paying for cloud inference to do work your own machine could eventually do at zero marginal cost? Small Language Models (SLMs) are how that shift happens.
 
 SLMs are already viable in specific domains. Useful autocomplete once required GPT-3.5 on GPU clusters. Now models like <Cite n={1}>Zeta 2.1</Cite> (built on top of <Cite n={2}>Qwen2.5-Coder-7B</Cite>) deliver real coding assistance on consumer hardware. <Cite n={3}>A recent study</Cite> compared five SLMs against three frontier LLMs on requirements classification. LLMs led by roughly 2% on average F1, but the difference was not statistically significant. The SLMs were up to 300 times smaller. Structured, domain-specific work is already within reach.
+
+Please do note that the benchmark might not reflect the entire population of tasks. As all of benchmark in this generation, it's only point of reference. But we still do see some sort of evidence of the viability of SLMs.
 
 ## Two to three years out
 
@@ -36,7 +38,7 @@ SLMs get smarter and faster every release. Processors improve every year: Apple 
 
 ## Cloud agents are the other half
 
-We are still figuring out how to use agents at scale. Spin up an agent to run in the background, hand off a task, or let a long-running agent work across a codebase like another engineer on the team. That works, and it belongs in the cloud. Local models are not built for autonomous, long-lived work that needs persistent state and broad context.
+We are still figuring out how to use agents at scale. Spin up an agent to run in the background, hand off a task, or let a long-running agent work across a codebase like another engineer on the team. That works, and it belongs in the cloud. Local models are not built for autonomous, long-lived work that needs persistent state, compute at scale, and multi-agent coordination.
 
 The distinction matters. Agents should work alongside us as co-bots, not replace our hands on the keyboard. You stay in the flow of writing and deciding. The agent handles the background: triaging issues, drafting PRs, running migrations, chasing down test failures. Local for what you touch directly. Cloud for what runs on its own.
 
@@ -50,7 +52,7 @@ Any knowledge work with language, structure, and repetition is a candidate. The 
 
 The future of development is local for the work in your hands. Cloud for the agents working beside you.
 
-We spent a decade buying bigger machines for heavier local tools. We spent the last few years shedding that weight and renting intelligence instead. The next chapter combines both: local hardware running local models for daily dev, cloud agents handling the autonomous work that needs frontier-scale reasoning. Technologies progress in circles. The workstation comes back, not to run IntelliJ, but to run the intelligence (_Or should we say IntelliJence?_ lol sorry) that replaced it.
+We spent a decade buying bigger machines for heavier local tools. We spent the last few years shedding that weight and renting intelligence instead. The next chapter combines both: local hardware running local models for daily dev, cloud agents handling the autonomous work that needs frontier-scale reasoning. Technologies progress in circles. The workstation comes back, not to run IntelliJ, but to run the intelligence (_Or, perhaps, IntelliJence_) that replaced it.
 
 <section class="references">
   <p class="references-title">References</p>

@@ -34,7 +34,7 @@ const formattedDate = date.toLocaleDateString("en-US", {
         </a>
 
         <div class="flex items-start justify-between gap-4">
-          <h1 class="text-3xl">{title}</h1>
+          <h1 class="min-w-0 wrap-break-word text-3xl">{title}</h1>
           <time datetime={date.toISOString()} class="shrink-0 text-sm text-muted-foreground">
             {formattedDate}
           </time>
@@ -76,6 +76,7 @@ const formattedDate = date.toLocaleDateString("en-US", {
   .blog-content h2 {
     position: relative;
     margin-top: 1.75rem;
+    padding-left: 1.25rem;
     font-size: 1.25rem;
     scroll-margin-top: 2rem;
   }
@@ -151,6 +152,21 @@ const formattedDate = date.toLocaleDateString("en-US", {
     }
   }
 
+  @media (max-width: 25rem) {
+    .blog-content > p:first-of-type {
+      initial-letter: normal;
+    }
+
+    @supports not (initial-letter: 2) {
+      .blog-content > p:first-of-type::first-letter {
+        float: none;
+        font-size: inherit;
+        line-height: inherit;
+        margin-right: 0;
+      }
+    }
+  }
+
   .blog-content h3 {
     margin-top: 0.5rem;
     font-size: 1.125rem;
@@ -183,7 +199,10 @@ const formattedDate = date.toLocaleDateString("en-US", {
   }
 
   .blog-content table {
+    display: block;
     width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border-collapse: collapse;
   }
 
