@@ -72,6 +72,18 @@ const ogImageType = ogImage.endsWith(".jpg") || ogImage.endsWith(".jpeg")
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F0BFKCSBLG"></script>
+    <script>
+      // @ts-ignore
+      window.dataLayer = window.dataLayer || [];
+      // @ts-ignore
+      function gtag(){dataLayer?.push?.(arguments);}
+      // @ts-ignore
+      gtag('js', new Date());
+      // @ts-ignore
+      gtag('config', 'G-F0BFKCSBLG');
+    </script>
   </head>
   <body>
     <slot />
