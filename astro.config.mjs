@@ -11,6 +11,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  site: "https://nkaewam.dev",
   markdown: {
     remarkPlugins: [remarkGfm],
   },
